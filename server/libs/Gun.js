@@ -32,7 +32,7 @@ module.exports = exports = class Gun {
 
     startMotor() {
         return new Promise( ( resolve ) => {
-            this.motor.set( 1 );
+            this.motor.set( 0 );
             setTimeout( () => {
                 resolve();
             }, 3000 );
@@ -41,15 +41,15 @@ module.exports = exports = class Gun {
 
     shoot() {
         return new Promise( ( resolve ) => {
-            this.piston.set( 0 );
+            this.piston.set( 1 );
             setTimeout( () => {
-                this.piston.set( 1 );
+                this.piston.set( 0 );
                 resolve();
             }, 1000 );
         } );
     }
 
     stopMotor() {
-        this.motor.set( 1 );
+        this.motor.set( 0 );
     }
 };
