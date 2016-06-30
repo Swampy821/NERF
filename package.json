@@ -1,0 +1,28 @@
+{
+  "name": "nerf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^2.13.1",
+    "express": "^4.14.0",
+    "http": "^0.0.0",
+    "socket.io-client": "^1.4.8",
+    "socketio": "^1.0.0",
+    "node-gpio": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swampy821/NERF.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Swampy821/NERF/issues"
+  },
+  "homepage": "https://github.com/Swampy821/NERF#readme"
+}
