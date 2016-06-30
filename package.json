@@ -6,10 +6,10 @@
   "dependencies": {
     "eslint": "^2.13.1",
     "express": "^4.14.0",
+    "gpio": "^0.2.7",
     "http": "^0.0.0",
     "socket.io-client": "^1.4.8",
-    "socketio": "^1.0.0",
-    "node-gpio": "*"
+    "socketio": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,22 +1,38 @@
 "use strict";
-const gpio = require( "node-gpio" );
+const gpio = require( "gpio" );
 
 module.exports = exports = class Gun {
     constructor() {
-        this.GPIO = gpio.GPIO;
-
-        this.motor = new this.GPIO( "17" );
-        this.piston = new this.GPIO( "27" );
-        this.motor.open();
-        this.piston.open();
-        this.motor.setMode( gpio.OUT );
-        this.piston.setMode( gpio.OUT );
-        this.piston.write( gpio.HIGH );
     }  
+
+    setup() {
+        return Promise.all( [
+            this._setup17(),
+            this._setup27
+        ] );
+    }
+
+
+    _setup17() {
+        return new Promise( ( resolve ) => {
+            this.motor = gpio.export( 17, {
+                direction: "out",
+                ready: resolve
+            } );
+        } );
+    }
+     _setup27() {
+        return new Promise( ( resolve ) => {
+            this.piston = gpio.export( 27, {
+                direction: "out",
+                ready: resolve
+            } );
+        } );
+    }
 
     startMotor() {
         return new Promise( ( resolve ) => {
-            this.motor.write( gpio.LOW );
+            this.motor.set( 1 );
             setTimeout( () => {
                 resolve();
             }, 3000 );
@@ -25,15 +41,15 @@ module.exports = exports = class Gun {
 
     shoot() {
         return new Promise( ( resolve ) => {
-            this.piston.write( gpio.LOW );
+            this.piston.set( 0 );
             setTimeout( () => {
-                this.piston.write( gpio.HIGH );
+                this.piston.set( 1 );
                 resolve();
             }, 1000 );
         } );
     }
 
     stopMotor() {
-        this.motor.write( gpio.HIGH );
+        this.motor.set( 1 );
     }
 };
