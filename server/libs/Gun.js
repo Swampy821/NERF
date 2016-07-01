@@ -8,7 +8,7 @@ module.exports = exports = class Gun {
     setup() {
         return Promise.all( [
             this._setup17(),
-            this._setup27
+            this._setup27()
         ] );
     }
 
@@ -41,15 +41,21 @@ module.exports = exports = class Gun {
 
     shoot() {
         return new Promise( ( resolve ) => {
-            this.piston.set( 1 );
+            this.piston.set( 0 );
             setTimeout( () => {
-                this.piston.set( 0 );
+                this.piston.set( 1 );
                 resolve();
             }, 1000 );
         } );
     }
 
     stopMotor() {
-        this.motor.set( 0 );
+        this.motor.set( 1 );
     }
+
+    stopPiston() {
+        this.piston.set( 1 );
+    }
+
 };
+

@@ -8,6 +8,8 @@ var gun = new Gun();
 
 
 gun.setup().then( () => {
+    gun.stopMotor();
+    gun.stopPiston();
     socket.onShoot( () => {
         gun.startMotor().then( () => {
             gun.shoot().then( () => {

@@ -21,6 +21,7 @@ module.exports = exports = class Socket{
 
     _serveFiles() {
         this.app.use( Express.static( `${ __dirname }/../../frontend/` ) );
+        this.app.use( Express.static( `${ __dirname }/../../frontend/libs/js-cam-motion/libs/` ) );
     }
 
 
