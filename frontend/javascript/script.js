@@ -22,7 +22,7 @@
 			action = true;
 			setTimeout( () => {
 				action = false;
-			}, 500 );
+			}, 300 );
 		}
 
 
