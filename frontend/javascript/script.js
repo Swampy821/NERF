@@ -29,8 +29,12 @@
                 if ( point.x < centerPoint + 50 && point.x > centerPoint - 50 ) {
                     $( ".dir" ).text( "SHOOT" );
                     socket.emit( "fire", "shoot" );
-                } else {
-					$( ".dir" ).text( "" );
+                } else if ( point.x < centerPoint + 50 ) {
+					socket.emit( "left" );
+					$( ".dir" ).text( "MOVE LEFT" );
+				} else if ( point.x > centerPoint - 50 ) {
+					socket.emit( "right" );
+					$( ".dir" ).text( "MOVE RIGHT" );
 				}
 			}
 		});
