@@ -1,5 +1,6 @@
 "use strict";
 const gpio = require( "gpio" );
+const exec = require( "child_process" ).exec; 
 
 module.exports = exports = class Gun {
     constructor() {
@@ -46,6 +47,22 @@ module.exports = exports = class Gun {
                 this.piston.set( 1 );
                 resolve();
             }, 1000 );
+        } );
+    }
+
+    moveLeft() {
+        return new Promise(  ( resolve ) => {
+            exec( "python ./servoScripts/moveLeft.py", ( data ) => {
+                resolve( data );
+            } );
+        } );
+    }
+
+    moveRight() {
+        return new Promise(  ( resolve ) => {
+            exec( "python ./servoScripts/moveRight.py", ( data ) => {
+                resolve( data );
+            } );
         } );
     }
 

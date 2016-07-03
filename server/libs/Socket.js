@@ -1,5 +1,6 @@
 "use strict";
 const Express = require( "express" );
+
 module.exports = exports = class Socket{ 
     constructor() {
         this.app = new Express();
@@ -36,7 +37,6 @@ module.exports = exports = class Socket{
 
 
     shoot() {
-        console.log( "FIRING" );
         this.io.emit( "fireGun" );
         this.shootCb();
     }
