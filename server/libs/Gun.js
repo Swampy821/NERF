@@ -8,15 +8,15 @@ module.exports = exports = class Gun {
 
     setup() {
         return Promise.all( [
-            this._setup17(),
+            this._setup22(),
             this._setup27()
         ] );
     }
 
 
-    _setup17() {
+    _setup22() {
         return new Promise( ( resolve ) => {
-            this.motor = gpio.export( 17, {
+            this.motor = gpio.export( 22, {
                 direction: "out",
                 ready: resolve
             } );
