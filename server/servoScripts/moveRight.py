@@ -7,4 +7,4 @@ pwm = GPIO.PWM( 11, 50 )
 
 pwm.start( 5 )
 
-pwm.ChangeDutyCycle( 10 )
+pwm.ChangeDutyCycle( 5 )

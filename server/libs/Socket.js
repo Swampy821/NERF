@@ -17,6 +17,9 @@ module.exports = exports = class Socket{
 
         this.io.on( "connection", ( socket ) => {
             this.listen( socket, "fire", this.shoot.bind( this ) );
+            this.listen( socket, "left", this.left.bind( this ) );
+            this.listen( socket, "right", this.right.bind( this ) );
+        
         } );
     }
 
@@ -42,8 +45,24 @@ module.exports = exports = class Socket{
     }
 
 
+    left() {
+        this.io.emit( "left" );
+        this.leftCb();
+    }
+
+    right() {
+        this.io.emit( "right" );
+        this.rightCb();
+    }
+
     onShoot( cb ) {
         this.shootCb = cb;
+    }
+    onLeft( cb ) {
+        this.leftCb = cb;
+    }
+    onRight( cb ) {
+        this.rightCb = cb;
     }
 
 
