@@ -3,7 +3,7 @@
 
 
 
-
+		var action = false;
 
 		var canvas = document.getElementById("canvas-blended");
         var canWidth = $( canvas ).css("width");
@@ -17,7 +17,16 @@
 		var camMotion = CamMotion.Engine({
 			canvasBlended: canvas
 		});
-		console.log(camMotion);
+
+		function doAction() {
+			action = true;
+			setTimeout( () => {
+				action = false;
+			}, 500 );
+		}
+
+
+
 		camMotion.on("error", function (e) {
 			console.log("error", e);
 		});
@@ -26,15 +35,18 @@
 			var point = camMotion.getMovementPoint(true);
 
 			if (camMotion.getAverageMovement(point.x-point.r/2, point.y-point.r/2, point.r, point.r)>4) {
-                if ( point.x < centerPoint + 50 && point.x > centerPoint - 50 ) {
+                if ( point.x < centerPoint + 50 && point.x > centerPoint - 50  && !action ) {
+					doAction();
                     $( ".dir" ).text( "SHOOT" );
                     socket.emit( "fire", "shoot" );
-                } else if ( point.x < centerPoint + 50 ) {
-					socket.emit( "left" );
-					$( ".dir" ).text( "MOVE LEFT" );
-				} else if ( point.x > centerPoint - 50 ) {
+                } else if ( point.x < centerPoint + 50  && !action ) {
+					doAction();
 					socket.emit( "right" );
 					$( ".dir" ).text( "MOVE RIGHT" );
+				} else if ( point.x > centerPoint - 50  && !action ) {
+					doAction();
+					socket.emit( "left" );
+					$( ".dir" ).text( "MOVE LEFT" );
 				}
 			}
 		});
